@@ -1,0 +1,32 @@
+﻿@{
+    ViewData["Title"] = "顯示學生資訊";
+}
+
+<h3>@ViewData["Title"]</h3>
+
+@model IEnumerable<StudentViewModel>
+
+<table class="table table-bordered">
+    <tr>
+        <td>操作</td>
+        <td>@Html.DisplayNameFor(m => m.Id)</td>
+        <td>@Html.DisplayNameFor(m => m.Name)</td>
+        <td>@Html.DisplayNameFor(m => m.Age)</td>
+        <td>@Html.DisplayNameFor(m => m.Sex)</td>
+    </tr>
+    @foreach (StudentViewModel stu in Model)
+    {
+        <tr>
+            <td>
+                <a asp-controller="Student" asp-action="Edit" asp-route-id="@stu.Id">編輯</a>
+                <a asp-controller="Student" asp-action="Delete" asp-route-id="@stu.Id" onclick="return confirm('是否刪除?')">刪除</a>
+            </td>
+            <td>@Html.DisplayFor(m => stu.Id)</td>
+            <td>@Html.DisplayFor(m => stu.Name)</td>
+            <td>@Html.DisplayFor(m => stu.Age)</td>
+            @*<td>@Html.DisplayFor(m => stu.Sex)</td>*@
+            @*<td>@(stu.Sex ? "男" : "女")</td>*@
+            <td>@Html.DisplayFor(m=>stu.StrSex)</td>
+        </tr>
+    }
+</table>

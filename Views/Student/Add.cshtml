@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "增加學生資訊";
+}
+@model StudentViewModel
+
+<h3>@ViewData["Title"]</h3>
+
+<form method="post" asp-controller="Student" asp-action="Add">
+    <div>
+        <div class="form-group col-4">
+            <label asp-for="Name"></label>
+            <input asp-for="Name" class="form-control" />
+            <span asp-validation-for="Name"></span>
+        </div>
+        <div class="form-group col-4">
+            <label asp-for="Age"></label>
+            <input asp-for="Age" class="form-control" />
+            <span asp-validation-for="Age"></span>
+        </div>
+        <div class="form-group col-4">
+            <label asp-for="Sex"></label>
+            <input type="radio" asp-for="Sex" value="true" checked="checked" />男
+            <input type="radio" asp-for="Sex" value="false" />女
+            <span asp-validation-for="Sex"></span>
+        </div>
+        <div class="form-group col-4">
+            <input type="submit" value="保存" class="btn btn-primary" />
+        </div>
+    </div>
+</form>
+@section scripts{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
